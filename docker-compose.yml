@@ -1,0 +1,14 @@
+
+services:              # all services avlailable
+  app:                 # the service name
+    build: 
+      context: .       # build docker file in current directory
+      args:
+        - DEV=true
+    ports:
+    - "8000:8000"      # port 8000 from local to 800 in container
+    volumes:
+    - ./app:/app       # directory from system to the container (to reflect the changes)
+    command: >         # command to run server any commands
+      sh -c "python manage.py runserver 0.0.0.0:8000"     
+      

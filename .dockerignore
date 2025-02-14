@@ -1,0 +1,19 @@
+# Git
+.git 
+.gitignore
+
+# Docker
+.docker 
+
+# Python
+app/__pychache__/                      
+app/*/__pychache__/                     
+app/*/*/__pychache__/                   
+app/*/*/*/__pychache__/
+.env/
+.venv/
+venv/                                    
+
+ # pycache is not needed
+ # pycache in all the sub directory                
+ # we no need virtual environment
