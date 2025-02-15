@@ -13,9 +13,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-      - name: checkoutss
+      - name: checkout
         uses: actions/checkout@v2
       - name: Test
         run: docker compose run --rm app sh -c "python manage.py test" 
       - name: Lint
-        run: docker compose run --rm app sh -c "flake"
+        run: docker compose run --rm app sh -c "flake8"
