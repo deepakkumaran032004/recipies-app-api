@@ -6,9 +6,27 @@ services:              # all services avlailable
       args:
         - DEV=true
     ports:
-    - "8000:8000"      # port 8000 from local to 800 in container
+      - "8000:8000"      # port 8000 from local to 800 in container
     volumes:
-    - ./app:/app       # directory from system to the container (to reflect the changes)
+      - ./app:/app       # directory from system to the container (to reflect the changes)
     command: >         # command to run server any commands
       sh -c "python manage.py runserver 0.0.0.0:8000"     
-      
+    environment:
+      - DB_HOST=db
+      - DB_NAME=devdb
+      - DB_USER=devuser
+      - DB_PASS=123hi123
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13-alpine       # image of postgresql
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+    environment:
+      - POSTRGRES_DB=devdb
+      - POSTRGRES_USER=devuser
+      - POSTRGRES_PASSWORD=123hi123
+
+volumes:
+  dev-db-data:
